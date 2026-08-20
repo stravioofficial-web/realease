@@ -1,20 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 
 function CountUp({ end, duration = 1800, suffix = "" }) {
-  const [count, setCount] = useState(0);
+  // Starts at the final value so the number is present in the markup
+  // for crawlers/no-JS clients that never trigger the scroll-in animation.
+  const [count, setCount] = useState(end);
   const [isVisible, setIsVisible] = useState(false);
+  const hasAnimated = useRef(false);
 
   const numberRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setCount(0);
+        if (entry.isIntersecting && !hasAnimated.current) {
+          hasAnimated.current = true;
           setIsVisible(true);
-        } else {
-          setIsVisible(false);
-          setCount(0);
         }
       },
       {
@@ -33,6 +33,8 @@ function CountUp({ end, duration = 1800, suffix = "" }) {
 
   useEffect(() => {
     if (!isVisible) return;
+
+    setCount(0);
 
     let startTime = null;
     let animationFrame;
@@ -76,7 +78,7 @@ function CountUp({ end, duration = 1800, suffix = "" }) {
   }, [isVisible, end, duration]);
 
   return (
-    <span ref={numberRef}>
+    <span ref={numberRef} suppressHydrationWarning>
       {count}
       {suffix}
     </span>
@@ -91,9 +93,9 @@ function ByTheNumbers() {
         <div className="numbersContent">
           <div className="numbersGrid">
             <div className="numberItem">
-              <h2>
+              <p className="numberValue">
                 <CountUp end={10000} suffix="+" duration={2000} />
-              </h2>
+              </p>
 
               <p>
                 DEALS
@@ -103,9 +105,9 @@ function ByTheNumbers() {
             </div>
 
             <div className="numberItem">
-              <h2>
+              <p className="numberValue">
                 <CountUp end={48} suffix=" hrs" duration={1800} />
-              </h2>
+              </p>
 
               <p>
                 AVERAGE
@@ -115,9 +117,9 @@ function ByTheNumbers() {
             </div>
 
             <div className="numberItem">
-              <h2>
+              <p className="numberValue">
                 <CountUp end={10} suffix="+ yrs" duration={1600} />
-              </h2>
+              </p>
 
               <p>
                 FOUNDER-LED
@@ -127,9 +129,9 @@ function ByTheNumbers() {
             </div>
 
             <div className="numberItem">
-              <h2>
+              <p className="numberValue">
                 <CountUp end={9} duration={1500} />
-              </h2>
+              </p>
 
               <p>
                 ASSET CLASSES

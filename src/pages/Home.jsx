@@ -21,13 +21,6 @@ function Home() {
         <section className="heroContent">
           <div className="heroLeft">
 
-            <p className="eyebrow">
-              REAL ESTATE DEAL SUPPORT ·{" "}
-              <span>BUILT FOR US</span>
-              <br />
-              INVESTORS AND FUNDS
-            </p>
-
             <h1 className="heroTitle">
               Real Estate,
               <br />

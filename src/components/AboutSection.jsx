@@ -57,7 +57,7 @@ function AboutSection() {
           <div className="aboutVisualWrap">
             <img
               className="aboutVisual"
-              src="/who-building.jpeg"
+              src="/who-building.png"
               alt="Commercial real estate underwriting and investment analysis"
             />
             <div className="aboutVisualCaption">

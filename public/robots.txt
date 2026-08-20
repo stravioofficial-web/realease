@@ -1,0 +1,22 @@
+# RealEase
+
+User-agent: *
+Allow: /
+
+# AI search crawlers (explicitly allowed for AI Overviews / AI Mode / ChatGPT / Perplexity visibility)
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://realease-ten.vercel.app/sitemap.xml
