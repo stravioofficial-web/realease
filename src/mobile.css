@@ -1,0 +1,745 @@
+
+@media (max-width: 768px) {
+  html,
+  body,
+  #root {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  img,
+  video,
+  svg {
+    max-width: 100%;
+  }
+
+  /* =========================
+     NAVBAR
+  ========================= */
+  .navbar {
+    width: 100%;
+    height: 72px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo img {
+    width: 118px;
+    height: auto;
+  }
+
+  .navLinks {
+    display: none !important;
+  }
+
+  .navButton {
+    min-width: 118px;
+    height: 42px;
+    padding: 0 15px;
+    font-size: 12px;
+  }
+
+  /* =========================
+     HERO
+  ========================= */
+  .hero {
+    min-height: 100svh;
+    background-position: 62% center;
+  }
+
+  .heroContent {
+    min-height: calc(100svh - 72px);
+    padding: 72px 22px 54px;
+    display: flex;
+    align-items: center;
+  }
+
+  .heroLeft {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 !important;
+  }
+
+  .eyebrow {
+    max-width: 330px;
+    margin-bottom: 22px;
+    font-size: 9px;
+    line-height: 1.55;
+    letter-spacing: 1.8px;
+  }
+
+  .heroTitle {
+    margin: 0 0 24px;
+    font-size: clamp(50px, 15vw, 68px);
+    line-height: 0.91;
+    letter-spacing: -2.7px;
+  }
+
+  .heroDescription {
+    max-width: 355px;
+    margin-bottom: 28px;
+    font-size: 13.5px;
+    line-height: 1.65;
+  }
+
+  .heroDescription br {
+    display: none;
+  }
+
+  .heroButtons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    height: 48px;
+    padding: 0 17px;
+    font-size: 12px;
+  }
+
+  /* =========================
+     BY THE NUMBERS
+  ========================= */
+  .numbersSection {
+    padding: 54px 20px 60px;
+  }
+
+  .numbersContainer,
+  .numbersContent {
+    width: 100%;
+  }
+
+  .numbersGrid {
+    width: 100%;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0 !important;
+  }
+
+  .numberItem {
+    min-width: 0;
+    padding: 26px 10px 28px !important;
+    text-align: center;
+  }
+
+  .numberItem:nth-child(odd) {
+    border-right: 1px solid rgba(17, 17, 17, 0.14);
+  }
+
+  .numberItem:nth-child(-n + 2) {
+    border-bottom: 1px solid rgba(17, 17, 17, 0.14);
+  }
+
+  .numberItem h2 {
+    margin-bottom: 10px;
+    font-size: clamp(38px, 12vw, 52px);
+    line-height: 1;
+  }
+
+  .numberItem p {
+    font-size: 8px;
+    line-height: 1.45;
+    letter-spacing: 1.25px;
+  }
+
+  /* =========================
+     VIDEO
+  ========================= */
+  .videoSection {
+    min-height: auto;
+    padding: 54px 20px;
+  }
+
+  .videoFrame {
+    width: 100% !important;
+    max-width: 100%;
+    aspect-ratio: 16 / 10;
+    margin: 0 auto;
+  }
+
+  .videoCover,
+  .videoCover img,
+  .realeaseVideo {
+    width: 100%;
+    height: 100%;
+  }
+
+  .videoCover img,
+  .realeaseVideo {
+    object-fit: cover;
+  }
+
+  .videoPlayButton {
+    width: 62px;
+    height: 62px;
+  }
+
+  /* =========================
+     ABOUT
+  ========================= */
+  .aboutSection {
+    min-height: auto !important;
+  }
+
+  .aboutInner {
+    width: 100%;
+    padding: 64px 22px !important;
+  }
+
+  .aboutMain {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 34px !important;
+  }
+
+  .aboutContent {
+    width: 100%;
+    max-width: none;
+  }
+
+  .aboutContent h2 {
+    margin: 0 0 22px;
+    font-size: clamp(39px, 11vw, 48px) !important;
+    line-height: 1.02;
+    letter-spacing: -1.8px;
+  }
+
+  .aboutContent p {
+    max-width: 100%;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .aboutVisualWrap {
+    width: 100%;
+  }
+
+  .aboutVisual {
+    width: 100%;
+    height: 330px !important;
+    object-fit: cover;
+  }
+
+  .aboutVisualCaption {
+    font-size: 11px;
+    line-height: 1.45;
+  }
+
+  /* =========================
+     WHAT WE DO
+  ========================= */
+  #services .whatWeDoInner,
+  .whatWeDoInner {
+    width: 100%;
+    padding: 62px 20px 68px !important;
+  }
+
+  #services .whatWeDoStack,
+  .whatWeDoStack {
+    display: flex !important;
+    justify-content: center;
+    margin-bottom: 46px !important;
+    text-align: center;
+  }
+
+  #services .whatWeDoHeader h2,
+  .whatWeDoHeader h2 {
+    font-size: clamp(43px, 12vw, 54px) !important;
+    line-height: 0.96 !important;
+    letter-spacing: -2px !important;
+  }
+
+  #services .dealJourney,
+  .dealJourney {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0 !important;
+  }
+
+  #services .journeyItem,
+  .journeyItem {
+    min-width: 0;
+    padding: 24px 14px 30px !important;
+    border-top: 1px solid rgba(17, 17, 17, 0.18);
+  }
+
+  #services .journeyItem:nth-child(even),
+  .journeyItem:nth-child(even) {
+    border-left: 1px solid rgba(17, 17, 17, 0.13);
+  }
+
+  #services .journeyTop,
+  .journeyTop {
+    height: 54px !important;
+    margin-bottom: 18px !important;
+  }
+
+  #services .journeyTop::after,
+  .journeyTop::after {
+    top: 37px !important;
+  }
+
+  #services .journeyDot,
+  .journeyDot {
+    top: 33px !important;
+  }
+
+  #services .journeyNumber,
+  .journeyNumber {
+    font-size: 12px !important;
+  }
+
+  #services .journeyItem h3,
+  .journeyItem h3 {
+    min-height: 0 !important;
+    margin-bottom: 12px !important;
+    font-size: 16px !important;
+    line-height: 1.28 !important;
+  }
+
+  #services .journeyDescription,
+  .journeyDescription {
+    font-size: 11.5px !important;
+    line-height: 1.55 !important;
+  }
+
+  /* =========================
+     YOUR SYSTEMS
+  ========================= */
+  .systemsInner {
+    width: 100%;
+    padding: 64px 0 70px !important;
+  }
+
+  .systemsContent {
+    width: 100%;
+  }
+
+  .systemsText {
+    width: auto !important;
+    max-width: 100% !important;
+    margin: 0 22px 34px !important;
+    text-align: center !important;
+  }
+
+  .systemsEyebrow {
+    margin-bottom: 14px !important;
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  .systemsText h2 {
+    font-size: clamp(34px, 10vw, 43px) !important;
+    line-height: 1.04 !important;
+    letter-spacing: -1.5px !important;
+  }
+
+  .systemsText h2 br {
+    display: none;
+  }
+
+  .systemsMarquee {
+    padding: 13px 0 !important;
+  }
+
+  .systemsTrack {
+    gap: 14px !important;
+  }
+
+  .marqueeItem {
+    min-width: 142px !important;
+    height: 68px !important;
+    padding: 0 17px !important;
+  }
+
+  .logoMark {
+    max-width: 112px !important;
+    max-height: 28px !important;
+  }
+
+  /* =========================
+     WHY REALEASE — BENTO
+  ========================= */
+  .whySection .whyInner,
+  .whyInner {
+    width: 100%;
+    padding: 62px 20px 70px !important;
+  }
+
+  .whyBgGlow {
+    width: 420px !important;
+    height: 420px !important;
+    top: -8% !important;
+    right: -34% !important;
+  }
+
+  .whyIntro {
+    max-width: 100% !important;
+    margin: 0 0 36px !important;
+  }
+
+  .whyEyebrow {
+    margin: 0 0 16px !important;
+    padding: 6px 13px !important;
+    font-size: 10px !important;
+    letter-spacing: 1.8px !important;
+  }
+
+  .whyIntro h2 {
+    font-size: clamp(36px, 11vw, 48px) !important;
+    line-height: 1 !important;
+    letter-spacing: -1.8px !important;
+  }
+
+  .whyIntro p {
+    font-size: 14.5px !important;
+    line-height: 1.65 !important;
+  }
+
+  /* single column bento */
+  .whyBento {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    grid-template-rows: none !important;
+    gap: 12px !important;
+  }
+
+  .whyCard,
+  .whyCard--feature,
+  .whyCard:not(.whyCard--feature):nth-of-type(2),
+  .whyCard:not(.whyCard--feature):nth-of-type(3),
+  .whyCard:not(.whyCard--feature):nth-of-type(4) {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding: 24px 20px !important;
+    border-radius: 18px !important;
+  }
+
+  .whyCard--feature {
+    min-height: 280px !important;
+  }
+
+  .whyCardTop {
+    margin-bottom: 18px !important;
+  }
+
+  .whyCardIcon {
+    width: 46px !important;
+    height: 46px !important;
+    border-radius: 12px !important;
+  }
+
+  .whyCardIcon svg {
+    width: 22px !important;
+    height: 22px !important;
+  }
+
+  .whyCardBody h3 {
+    font-size: 18px !important;
+  }
+
+  .whyCard--feature .whyCardBody h3 {
+    font-size: 24px !important;
+  }
+
+  .whyCardBody p {
+    font-size: 13.5px !important;
+    line-height: 1.6 !important;
+  }
+
+  .whyCardFeatureFoot {
+    margin-top: 22px !important;
+    padding-top: 14px !important;
+  }
+
+  .whyStats {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    padding: 20px !important;
+    border-radius: 18px !important;
+  }
+
+  .whyStat {
+    padding: 12px 0 8px !important;
+    border-left: none !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .whyStat:first-child {
+    border-top: none !important;
+    padding-top: 0 !important;
+  }
+
+  .whyStat strong {
+    font-size: 30px !important;
+  }
+
+  .whyStat span {
+    font-size: 10px !important;
+    letter-spacing: 1.2px !important;
+  }
+
+  /* =========================
+     WHO WE WORK FOR
+  ========================= */
+  .whoInner {
+    width: 100%;
+    padding: 62px 20px 68px !important;
+  }
+
+  .whoHeading {
+    width: 100%;
+    margin-bottom: 38px !important;
+    text-align: center;
+  }
+
+  .whoHeading h2 {
+    margin: 0 auto;
+    font-size: clamp(42px, 11.5vw, 52px) !important;
+    line-height: 0.97 !important;
+    letter-spacing: -1.9px !important;
+  }
+
+  .whoContent {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
+
+  .whoList {
+    width: 100%;
+    order: 2;
+  }
+
+  .whoVisual {
+    width: 100%;
+    min-height: 330px !important;
+    order: 1;
+  }
+
+  .whoItem {
+    min-height: 88px !important;
+    display: grid !important;
+    grid-template-columns: 42px minmax(0, 1fr) !important;
+    gap: 10px !important;
+    align-items: center;
+    padding: 0 8px !important;
+  }
+
+  .whoNumber {
+    font-size: 10px !important;
+  }
+
+  .whoItem h3 {
+    font-size: 17px !important;
+    line-height: 1.25 !important;
+  }
+
+  /* =========================
+     TESTIMONIALS
+  ========================= */
+  .testimonialsInner {
+    width: 100%;
+    padding: 62px 20px 66px !important;
+  }
+
+  .testimonialsHeader {
+    margin-bottom: 40px !important;
+    text-align: center;
+  }
+
+  .testimonialsEyebrow {
+    margin-bottom: 13px !important;
+    font-size: 9px !important;
+    letter-spacing: 2px !important;
+  }
+
+  .testimonialsHeader h2 {
+    font-size: clamp(43px, 12vw, 54px) !important;
+    line-height: 0.98 !important;
+    letter-spacing: -2px !important;
+  }
+
+  .testimonialsGrid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 22px !important;
+  }
+
+  .testimonialItem {
+    min-height: 0 !important;
+    padding: 28px 22px !important;
+  }
+
+  .testimonialQuoteMark {
+    font-size: 50px !important;
+    line-height: 0.8 !important;
+  }
+
+  .testimonialItem blockquote {
+    margin: 16px 0 28px !important;
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+  }
+
+  .testimonialName,
+  .testimonialCompany,
+  .testimonialNote {
+    font-size: 11px !important;
+  }
+
+  /* =========================
+     CONTACT
+  ========================= */
+  .finalContactInner {
+    width: 100%;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 42px !important;
+    padding: 62px 20px 66px !important;
+  }
+
+  .finalContactLeft {
+    width: 100%;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .finalContactLeft h2 {
+    font-size: clamp(43px, 12vw, 54px) !important;
+    line-height: 0.98 !important;
+    letter-spacing: -2px !important;
+    text-align: center !important;
+  }
+
+  .finalContactLeft h2 br {
+    display: initial !important;
+  }
+
+  .finalContactDescription {
+    margin-top: 20px !important;
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    text-align: center !important;
+  }
+
+  .finalContactDetails {
+    margin-top: 28px !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+
+  .finalContactDetails a,
+  .finalContactDetails span {
+    font-size: 12px !important;
+  }
+
+  .inquiryWrap {
+    width: 100% !important;
+    max-width: 100% !important;
+    justify-self: stretch !important;
+    padding: 24px 20px 22px !important;
+  }
+
+  .finalFormRow {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+  }
+
+  .finalFormGroup input,
+  .finalFormGroup select {
+    width: 100% !important;
+  }
+
+  .finalContactButton {
+    width: 100% !important;
+  }
+
+  /* =========================
+     FOOTER
+  ========================= */
+  .footerInner {
+    width: 100%;
+    padding: 50px 20px 24px !important;
+  }
+
+  .footerTop {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 34px 20px !important;
+    padding-bottom: 38px !important;
+  }
+
+  .footerBrand {
+    grid-column: 1 / -1 !important;
+  }
+
+  .footerBrand h2 {
+    font-size: 38px !important;
+  }
+
+  .footerBrand p,
+  .footerColumn a,
+  .footerColumn span {
+    font-size: 11px !important;
+    line-height: 1.65 !important;
+  }
+
+  .footerColumnTitle {
+    font-size: 9px !important;
+    letter-spacing: 1.7px !important;
+  }
+
+  .footerBottom {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+    font-size: 10px !important;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 420px) {
+  .heroButtons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+  }
+
+  #services .dealJourney,
+  .dealJourney {
+    grid-template-columns: 1fr !important;
+  }
+
+  #services .journeyItem:nth-child(even),
+  .journeyItem:nth-child(even) {
+    border-left: 0;
+  }
+
+  .footerTop {
+    grid-template-columns: 1fr !important;
+  }
+
+  .footerBrand {
+    grid-column: auto !important;
+  }
+}
