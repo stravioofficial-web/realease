@@ -13,6 +13,13 @@ function Footer() {
         <p className="siteFooter__note">
           Items shown in red are placeholders to be confirmed before publication.
         </p>
+
+        <p className="siteFooter__credit">
+          Developed by{" "}
+          <a href="https://straviomedia.com" target="_blank" rel="noopener">
+            Stravio Media
+          </a>
+        </p>
       </div>
 
     </footer>
