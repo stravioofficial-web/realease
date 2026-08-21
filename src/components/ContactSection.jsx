@@ -83,15 +83,6 @@ function ContactSection() {
       {/* RIGHT */}
       <div className="reContact__right">
 
-        <div className="reContact__formHeader">
-
-          <h3>
-            Quick <span>Inquiry</span>
-          </h3>
-
-        </div>
-
-
         <form
           className="reContact__form"
           onSubmit={handleSubmit}
