@@ -54,7 +54,7 @@ function VideoSection() {
           <div className="videoCover">
 
             <img
-              src="/reel-cover.png"
+              src="https://res.cloudinary.com/rtozh6o5/image/upload/v1787402691/DEAL_SUPPORT_qh3ncs.png"
               alt="RealEase video preview"
             />
 
