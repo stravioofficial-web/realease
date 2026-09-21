@@ -1141,6 +1141,12 @@ video {
   100% { transform: scaleY(0); transform-origin: bottom; }
 }
 
+.disperseMobileNav,
+.disperseMobileHint {
+  display: none;
+}
+
+
 
 /* =========================================================
    THE TEAM
@@ -1857,24 +1863,60 @@ video {
 
   .testimonialItem blockquote { max-width: 100%; }
 
-  /* BUILT DIFFERENTLY, FOR REAL ESTATE — the scroll-pinned,
-     horizontally-spread card reveal has no room to spread on a
-     phone-width screen (cards collapse to ~80px squares and the
-     text overlaps). Drop the pin/scrub mechanic and lay the
-     cards out as a normal stacked list instead. */
-  .disperseSection { height: auto; }
+  /* =========================================================
+     BUILT DIFFERENTLY, FOR REAL ESTATE (MOBILE ANIMATION)
+     Scroll-pinned 3D deck stacking with tactile depth,
+     touch swipe gestures, and active pagination.
+  ========================================================= */
+
+  .disperseSection {
+    position: relative;
+    height: 300vh;
+    background: #000000;
+  }
 
   .disperseSticky {
-    position: static;
-    height: auto;
-    padding-bottom: 60px;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: clamp(24px, 4vh, 36px) 18px clamp(20px, 3.5vh, 32px);
+    box-sizing: border-box;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 196, 0, 0.08), transparent 60%), #000000;
+  }
+
+  .disperseHeading {
+    position: relative;
+    z-index: 20;
+    width: 100%;
+    padding-top: 0;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .disperseHeading h2 {
+    font-size: clamp(34px, 9.5vw, 44px);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
   }
 
   .disperseStage {
-    position: static;
+    position: relative;
     width: 100%;
-    margin-top: 36px;
-    padding: 0 22px;
+    max-width: 380px;
+    height: clamp(280px, 44vh, 360px);
+    flex: none;
+    margin: auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    touch-action: pan-y;
   }
 
   .disperseCard,
@@ -1882,25 +1924,169 @@ video {
   .disperseCard2,
   .disperseCard3,
   .disperseCard4 {
-    position: static;
-    width: 100% !important;
-    height: auto !important;
-    margin: 0 0 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(340px, calc(100vw - 44px));
+    height: clamp(280px, 42vh, 340px);
+    padding: clamp(24px, 4vh, 30px) clamp(22px, 5vw, 28px);
+    box-sizing: border-box;
+    border-radius: 20px;
+    background: #ffc400;
+    color: #090c10;
+    margin: 0;
+    rotate: 0deg;
+    will-change: transform, opacity, filter;
+    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.65), 0 2px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+
+    --y-in: calc((1 - var(--mobile-in, 1)) * 90px);
+    --y-out: calc(var(--mobile-out, 0) * -16px);
+    --s-in: calc(0.93 + var(--mobile-in, 1) * 0.07);
+    --s-out: calc(1 - var(--mobile-out, 0) * 0.08);
+
+    transform: translate(-50%, calc(-50% + var(--y-in) + var(--y-out))) scale(calc(var(--s-in) * var(--s-out))) !important;
+    opacity: calc(var(--mobile-in, 1) * (1 - var(--mobile-out, 0) * 0.62)) !important;
+    filter: brightness(calc(1 - var(--mobile-out, 0) * 0.25));
+    pointer-events: calc(var(--mobile-in, 1) > 0.5 && var(--mobile-out, 0) < 0.5 ? auto : none);
+    transition: box-shadow 0.25s ease;
+  }
+
+  .disperseCard1 { z-index: 10; }
+  .disperseCard2 { z-index: 11; }
+  .disperseCard3 { z-index: 12; }
+  .disperseCard4 { z-index: 13; }
+
+  .disperseCardTop {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    transform: none !important;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .disperseNumber {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+  }
+
+  .disperseMiniLine {
+    width: 28px;
+    height: 1.5px;
+    background: #090c10;
   }
 
   .disperseCardContent {
-    position: static;
-    left: auto;
-    right: auto;
-    bottom: auto;
+    position: absolute;
+    left: clamp(22px, 5vw, 28px);
+    right: clamp(22px, 5vw, 28px);
+    bottom: clamp(22px, 4vh, 28px);
+  }
+
+  .disperseCardContent h3 {
+    margin: 0 0 10px;
+    max-width: 100%;
+    font-size: clamp(20px, 5.5vw, 24px);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+  }
+
+  .disperseCardContent p {
+    margin: 0;
+    max-width: 100%;
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: rgba(9, 12, 16, 0.72);
   }
 
   .disperseScroll { display: none; }
+
+  /* Mobile pagination navigation pills */
+  .disperseMobileNav {
+    position: relative;
+    z-index: 25;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    flex-shrink: 0;
+    margin-bottom: 6px;
+  }
+
+  .disperseMobileDot {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 6px 12px;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .disperseMobileDot__num {
+    font-size: 11px;
+    font-weight: 600;
+    font-family: "Poppins", Arial, sans-serif;
+    color: #94a3b8;
+    letter-spacing: 0.08em;
+    transition: color 0.25s ease;
+  }
+
+  .disperseMobileDot__bar {
+    width: 16px;
+    height: 2px;
+    border-radius: 99px;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.25s ease;
+  }
+
+  .disperseMobileDot--active {
+    background: rgba(255, 196, 0, 0.16);
+    border-color: #ffc400;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(255, 196, 0, 0.2);
+  }
+
+  .disperseMobileDot--active .disperseMobileDot__num {
+    color: #ffc400;
+  }
+
+  .disperseMobileDot--active .disperseMobileDot__bar {
+    width: 22px;
+    background: #ffc400;
+  }
+
+  .disperseMobileHint {
+    position: relative;
+    z-index: 20;
+    font-size: 11.5px;
+    color: #64748b;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .disperseMobileHintIcon {
+    animation: bounceDown 1.8s infinite ease-in-out;
+  }
+
+  @keyframes bounceDown {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(3px); }
+  }
 }
+
 
 
 /* =========================================================

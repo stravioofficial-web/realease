@@ -1,3 +1,5 @@
+import { navigateTo } from "../utils/navigation";
+
 function Footer() {
   return (
     <footer className="siteFooter">
@@ -6,12 +8,25 @@ function Footer() {
       <div className="siteFooter__bottom">
         <p>
           © 2026 RealEase. All rights reserved. &nbsp;·&nbsp;
-          <a href="#privacy">Privacy Policy</a> &nbsp;·&nbsp;
-          <a href="#terms">Terms</a>
-        </p>
-
-        <p className="siteFooter__note">
-          Items shown in red are placeholders to be confirmed before publication.
+          <a
+            href="/privacy"
+            onClick={(e) => {
+              e.preventDefault();
+              navigateTo("/privacy");
+            }}
+          >
+            Privacy Policy
+          </a>
+          &nbsp;·&nbsp;
+          <a
+            href="/terms"
+            onClick={(e) => {
+              e.preventDefault();
+              navigateTo("/terms");
+            }}
+          >
+            Terms
+          </a>
         </p>
 
         <p className="siteFooter__credit">

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { openCalendly } from "../utils/calendly";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -35,7 +36,7 @@ function Navbar() {
       </div>
 
       {/* NAV BUTTON */}
-      <button className="navButton">
+      <button className="navButton" onClick={() => openCalendly()}>
         Book a Call
         <span>→</span>
       </button>
@@ -63,7 +64,13 @@ function Navbar() {
           <a href="#contact" onClick={closeMenu}>Contact</a>
         </div>
 
-        <button className="navButton mobileMenuButton" onClick={closeMenu}>
+        <button
+          className="navButton mobileMenuButton"
+          onClick={() => {
+            closeMenu();
+            openCalendly();
+          }}
+        >
           Book a Call
           <span>→</span>
         </button>

@@ -25,6 +25,7 @@ const reasons = [
 
 function WhyRealease() {
   const sectionRef = useRef(null);
+  const touchStartX = useRef(null);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -60,6 +61,36 @@ function WhyRealease() {
     };
   }, []);
 
+  const activeIndex =
+    progress < 0.22 ? 0 : progress < 0.48 ? 1 : progress < 0.74 ? 2 : 3;
+
+  const scrollToCard = (index) => {
+    if (!sectionRef.current || typeof window === "undefined") return;
+    const section = sectionRef.current;
+    const scrollableDistance = section.offsetHeight - window.innerHeight;
+    const targetPercentages = [0.03, 0.32, 0.60, 0.90];
+    const targetTop = section.offsetTop + targetPercentages[index] * scrollableDistance;
+    window.scrollTo({ top: targetTop, behavior: "smooth" });
+  };
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e) => {
+    if (touchStartX.current === null) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX.current - touchEndX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0 && activeIndex < 3) {
+        scrollToCard(activeIndex + 1);
+      } else if (diff < 0 && activeIndex > 0) {
+        scrollToCard(activeIndex - 1);
+      }
+    }
+    touchStartX.current = null;
+  };
+
   return (
     <section
       ref={sectionRef}
@@ -68,7 +99,6 @@ function WhyRealease() {
       <div className="disperseSticky">
 
         {/* HEADING */}
-
         <div className="disperseHeading">
           <h2>
             Built differently,
@@ -78,22 +108,13 @@ function WhyRealease() {
         </div>
 
         {/* CARDS */}
-
-        <div className="disperseStage">
+        <div
+          className="disperseStage"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
           {reasons.map((reason, index) => {
-            /*
-              Each card gets its own animation window.
-
-              01 moves first
-              02 moves second
-              03 moves third
-              04 moves last
-            */
-
-            /* Windows overlap and the last card's window ends
-               exactly at progress 1, so the animation finishes
-               right as the pin releases — no idle scrolling
-               once the cards are done moving. */
+            /* Desktop horizontal spread window */
             const start = index * 0.13;
             const end = start + 0.61;
 
@@ -105,6 +126,27 @@ function WhyRealease() {
               1
             );
 
+            /* Mobile stacking window */
+            const enterStart = index === 0 ? 0 : 0.08 + (index - 1) * 0.26;
+            const enterEnd = index === 0 ? 0 : enterStart + 0.20;
+            const mobileIn =
+              index === 0
+                ? 1
+                : Math.min(
+                    Math.max((progress - enterStart) / (enterEnd - enterStart), 0),
+                    1
+                  );
+
+            const exitStart = index < 3 ? 0.08 + index * 0.26 : 1;
+            const exitEnd = index < 3 ? exitStart + 0.20 : 1;
+            const mobileOut =
+              index < 3
+                ? Math.min(
+                    Math.max((progress - exitStart) / (exitEnd - exitStart), 0),
+                    1
+                  )
+                : 0;
+
             return (
               <article
                 key={reason.number}
@@ -112,6 +154,8 @@ function WhyRealease() {
                 style={{
                   "--card-progress": cardProgress,
                   "--card-index": index,
+                  "--mobile-in": mobileIn,
+                  "--mobile-out": mobileOut,
                 }}
               >
                 <div className="disperseCardTop">
@@ -132,8 +176,36 @@ function WhyRealease() {
           })}
         </div>
 
-        {/* SCROLL INDICATOR */}
+        {/* MOBILE PAGINATION DOTS & NAVIGATION */}
+        <div className="disperseMobileNav">
+          {reasons.map((r, i) => (
+            <button
+              key={r.number}
+              type="button"
+              className={`disperseMobileDot ${
+                activeIndex === i ? "disperseMobileDot--active" : ""
+              }`}
+              onClick={() => scrollToCard(i)}
+              aria-label={`View step ${r.number}: ${r.title}`}
+            >
+              <span className="disperseMobileDot__num">{r.number}</span>
+              <span className="disperseMobileDot__bar" />
+            </button>
+          ))}
+        </div>
 
+        {/* MOBILE SWIPE / SCROLL HINT */}
+        <div
+          className="disperseMobileHint"
+          style={{
+            opacity: Math.max(1 - progress * 4.5, 0),
+          }}
+        >
+          <span>Scroll to explore</span>
+          <span className="disperseMobileHintIcon">↓</span>
+        </div>
+
+        {/* DESKTOP SCROLL INDICATOR */}
         <div
           className="disperseScroll"
           style={{

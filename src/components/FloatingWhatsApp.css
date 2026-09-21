@@ -1,0 +1,116 @@
+.floatingWhatsApp {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 998;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-family: "DM Sans", Arial, sans-serif;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  outline: none;
+}
+
+.floatingWhatsApp:hover {
+  transform: translateY(-3px) scale(1.02);
+}
+
+.floatingWhatsApp:focus-visible .floatingWhatsApp__btn {
+  outline: 3px solid #60a5fa;
+  outline-offset: 3px;
+}
+
+.floatingWhatsApp__tooltip {
+  background: rgba(13, 23, 36, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #f8fafc;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 20px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(8px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.floatingWhatsApp:hover .floatingWhatsApp__tooltip,
+.floatingWhatsApp:focus-visible .floatingWhatsApp__tooltip {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.floatingWhatsApp__btn {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 0 6px 22px rgba(37, 211, 102, 0.45), 0 2px 6px rgba(0, 0, 0, 0.25);
+  transition: box-shadow 0.25s ease;
+}
+
+.floatingWhatsApp:hover .floatingWhatsApp__btn {
+  box-shadow: 0 8px 28px rgba(37, 211, 102, 0.65), 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.floatingWhatsApp__pulse {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(37, 211, 102, 0.75);
+  animation: waPulse 2.5s infinite cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+}
+
+@keyframes waPulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.85;
+  }
+  60% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+.floatingWhatsApp__icon {
+  width: 32px;
+  height: 32px;
+  fill: #ffffff;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .floatingWhatsApp {
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .floatingWhatsApp__btn {
+    width: 52px;
+    height: 52px;
+  }
+
+  .floatingWhatsApp__icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .floatingWhatsApp__tooltip {
+    display: none;
+  }
+}

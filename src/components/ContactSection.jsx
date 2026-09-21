@@ -59,20 +59,20 @@ function ContactSection() {
             className="reContact__logo"
           />
 
-          <a href="mailto:hello@realease.com">
-            hello@realease.com
+          <a href="mailto:vmanchanda@therealeease.com">
+            vmanchanda@therealeease.com
           </a>
 
-          <a href="tel:+10000000000">
-            +1 (000) 000-0000
+          <a href="tel:+919582232812">
+            +91 95822 32812
           </a>
 
           <a
-            href="#"
+            href="https://www.linkedin.com/company/the-real-ease/"
             target="_blank"
             rel="noreferrer"
           >
-            linkedin.com/company/realease
+            linkedin.com/company/the-real-ease
           </a>
 
         </div>

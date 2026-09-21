@@ -9,6 +9,7 @@ import WhoWeWorkFor from "../components/WhoWeWorkFor";
 import Testimonials from "../components/Testimonials";
 import ContactSection from "../components/ContactSection";
 import Footer from "../components/Footer";
+import { openCalendly } from "../utils/calendly";
 
 function Home() {
   return (
@@ -37,7 +38,7 @@ function Home() {
 
             <div className="heroButtons">
 
-              <button className="primaryButton">
+              <button className="primaryButton" onClick={() => openCalendly()}>
                 <span>Book a Call</span>
               </button>
 
