@@ -26,10 +26,12 @@ const reasons = [
 function WhyRealease() {
   const sectionRef = useRef(null);
   const touchStartX = useRef(null);
+  const targetProgress = useRef(0);
+  const rafId = useRef(null);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const computeTargetProgress = () => {
       if (!sectionRef.current) return;
 
       const section = sectionRef.current;
@@ -42,22 +44,41 @@ function WhyRealease() {
 
       const scrolled = -rect.top;
 
-      const newProgress = Math.min(
+      targetProgress.current = Math.min(
         Math.max(scrolled / scrollableDistance, 0),
         1
       );
+    };
 
-      setProgress(newProgress);
+    /* Smoothly ease the displayed progress toward the scroll target
+       every frame, instead of snapping straight to the raw scroll
+       value, so fast/jittery wheel or trackpad scrolling doesn't
+       cause the cards to jump open/closed. */
+    const tick = () => {
+      setProgress((current) => {
+        const diff = targetProgress.current - current;
+        if (Math.abs(diff) < 0.0008) {
+          return targetProgress.current;
+        }
+        return current + diff * 0.12;
+      });
+      rafId.current = requestAnimationFrame(tick);
+    };
+
+    const handleScroll = () => {
+      computeTargetProgress();
     };
 
     window.addEventListener("scroll", handleScroll, {
       passive: true,
     });
 
-    handleScroll();
+    computeTargetProgress();
+    rafId.current = requestAnimationFrame(tick);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      if (rafId.current) cancelAnimationFrame(rafId.current);
     };
   }, []);
 
